@@ -61,7 +61,7 @@ console.log(`
                 console.log(`URL: ${downloadUrl}`);
             } else {
                 filename=filename.replace('?download=true', '');
-                exec(`aria2c -d ${directory} -o ${filename} ${downloadUrl}`, (error, stdout, stderr) => {
+                exec(`aria2c &>${filename}.log -d ${directory} -o ${filename} ${downloadUrl}`, (error, stdout, stderr) => {
                     if (error) {
                         console.error(`Error downloading file: ${error.message}`);
                         return;
