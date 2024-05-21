@@ -51,13 +51,16 @@ console.log(`
 
     links.forEach(link => {
         if (link.attribs.href.toLowerCase().includes('?download=true')) {
+            if (!link.attribs.href.toLowerCase().includes('q8_0')) {
+
             const downloadUrl = new URL(link.attribs.href, url).href; // Resolve relative URLs
-            const filename = path.basename(downloadUrl); // Extract filename from URL
+            var filename = path.basename(downloadUrl); // Extract filename from URL
 
             if (dryRun) {
                 console.log(`File: ${filename.replace('?download=true', '')}`);
                 console.log(`URL: ${downloadUrl}`);
             } else {
+                filename=filename.replace('?download=true', '');
                 exec(`aria2c -d ${directory} -o ${filename} ${downloadUrl}`, (error, stdout, stderr) => {
                     if (error) {
                         console.error(`Error downloading file: ${error.message}`);
@@ -69,6 +72,7 @@ console.log(`
                     }
                     console.log(`stdout: ${stdout}`);
                 });
+            }
             }
         }
     });
