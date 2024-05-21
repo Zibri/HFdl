@@ -51,7 +51,7 @@ console.log(`
 
     links.forEach(link => {
         if (link.attribs.href.toLowerCase().includes('?download=true')) {
-            if (!link.attribs.href.toLowerCase().includes('q8_0')) {
+//            if (!link.attribs.href.toLowerCase().includes('q8_0')) {
 
             const downloadUrl = new URL(link.attribs.href, url).href; // Resolve relative URLs
             var filename = path.basename(downloadUrl); // Extract filename from URL
@@ -73,7 +73,7 @@ console.log(`
                     console.log(`stdout: ${stdout}`);
                 });
             }
-            }
+//            }
         }
     });
 
